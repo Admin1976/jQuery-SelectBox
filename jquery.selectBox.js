@@ -511,8 +511,8 @@ if(jQuery) (function($) {
 				
 				select = $(select);
 				li = $(li);
-				var control = select.data('selectBox-control'),
-					settings = select.data('selectBox-settings');
+				var control = select.data('selectBox-control');
+					//settings = select.data('selectBox-settings');
 				
 				if( control.hasClass('selectBox-disabled') ) return false;
 				if( li.length === 0 || li.hasClass('selectBox-disabled') ) return false;
@@ -822,8 +822,8 @@ if(jQuery) (function($) {
 			var setOptions = function(select, options) {
 				
 				select = $(select);
-				var control = select.data('selectBox-control'),
-					settings = select.data('selectBox-settings');
+				var control = select.data('selectBox-control');
+					//settings = select.data('selectBox-settings');
 				
 				switch( typeof(data) ) {
 					
