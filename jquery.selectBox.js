@@ -424,20 +424,26 @@ if(jQuery) (function($) {
 			var showMenu = function(select) {
 				
 				select = $(select);
-				var control = select.data('selectBox-control'),
-					settings = select.data('selectBox-settings'),
-					options = control.data('selectBox-options');
-				if( control.hasClass('selectBox-disabled') ) return false;
+        
+				var control     = select.data('selectBox-control'),
+            settings    = select.data('selectBox-settings'),
+            options     = control.data('selectBox-options'),
+            position    = control.offset(),
+            borderWidth = parseInt(control.css('borderLeftWidth')) * 2;
+            
+				if( control.hasClass('selectBox-disabled') ){ return false; }
 				
 				hideMenus();
 				
 				// Auto-width
-				if( settings.autoWidth ) options.css('width', control.outerWidth() - (parseInt(control.css('borderLeftWidth')) + parseInt(control.css('borderLeftWidth'))));
-				
+				if( settings.autoWidth ){
+          options.css( 'width', control.outerWidth() - borderWidth );
+        }
+
 				// Menu position
 				options.css({
-					top: control.offset().top + control.outerHeight() - (parseInt(control.css('borderBottomWidth'))),
-					left: control.offset().left
+          top: position.top + control.outerHeight(),
+					left: position.left + borderWidth
 				});
 				
 				// Show menu
@@ -865,7 +871,7 @@ if(jQuery) (function($) {
 						control.append(options);
 						break;
 					case 'dropdown':
-						control.find('.selectBox-label').text( $(select).find('OPTION:selected').text() || '\u00A0' );
+						control.find('.selectBox-label').text( select.find('OPTION:selected').text() || '\u00A0' );
 						$("BODY").append(options);
 						break;
 				}
